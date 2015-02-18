@@ -1,0 +1,100 @@
+﻿<div data-ng-controller="taskController" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <strong class="error">{{ error }}</strong>
+            <p data-ng-hide="addMode"><a data-ng-click="toggleAdd()" href="javascript:;" class="btn btn-primary">Add New</a></p>
+            <form name="addTask" data-ng-show="addMode" style="width:600px;margin:0px auto;">
+                <div class="form-group">
+                    <label for="tname" class="col-sm-2 control-label">Task:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="tname" placeholder="please enter task" data-ng-model="newtask.TaskName" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="priority" class="col-sm-2 control-label">Priority:</label>
+                    <div class="col-sm-10">
+       
+                       <!--     <select class="form-control" id="priorityadd" data-ng-model="newtask.Priority" ng-options="Priority.label for Priority in Priorities"> </select>
+                      -->   <select class="form-control" id="priorityadd" data-ng-model="newtask.Priority">
+                            <option value="High">High</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+                      </div>
+                </div>
+                <div class="form-group">
+                    <label for="duedate" class="col-sm-2 control-label">Due Date:</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="duedateadd" data-ng-model="newtask.DueDate" datepicker required ng-pattern="/^((\d{4})-(\d{2})-(\d{2})|(\d{2})\/(\d{2})\/(\d{4}))$/" />
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <input type="submit" value="Add" data-ng-click="add()" data-ng-disabled="!addTask.$valid" class="btn btn-primary" />
+                        <input type="button" value="Cancel" data-ng-click="toggleAdd()" class="btn btn-primary" />
+                    </div>
+                </div>
+                <br />
+            </form>
+   
+        
+        
+        
+        
+        
+        
+        
+             </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <br />
+            <br />
+        </div>
+    </div>
+    <form name="editTask">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" style="width:800px">
+                        <tr>
+                            <td>Task</td>
+                            <th>Priority</th>
+                            <th>DueDate</th>
+                        </tr>
+                        <tr data-ng-repeat="task in tasks">
+
+                            <td>
+                                <p data-ng-hide="task.editMode">{{ task.TaskName }}</p>
+                                <input data-ng-show="task.editMode" type="text" data-ng-model="task.TaskName" required />
+                            </td>
+                            <td>
+                                <p data-ng-hide="task.editMode">{{ task.Priority }}</p>
+                                <!--       <input data-ng-show="task.editMode" type="text" data-ng-model="task.Priority" />
+                                -->
+
+                                <select data-ng-show="task.editMode" class="form-control" id="priorityedit" data-ng-model="task.Priority">
+                                    <option value="High" selected="selected">High</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="Low">Low</option>
+                                </select>
+
+                            </td>
+                            <td>
+                                <p data-ng-hide="task.editMode">{{ task.DueDate | date:'yyyy-MM-dd' }}</p>
+                                <input data-ng-show="task.editMode" type="text" data-ng-model="task.DueDate" datepicker required  />
+                                <!--ng-pattern="/^((\d{4})-(\d{2})-(\d{2})|(\d{2})\/(\d{2})\/(\d{4}))$/"-->
+                            </td>
+                            <td>
+                                <p data-ng-hide="task.editMode"><a data-ng-click="toggleEdit(task)" href="javascript:;">Edit</a> | <a data-ng-click="deletetask(task)" href="javascript:;">Delete</a></p>
+                                <p data-ng-show="task.editMode"><a data-ng-click="save(task)" data-ng-disabled="!editTask.$valid" href="javascript:;">Save</a> | <a data-ng-click="toggleEdit(task)" href="javascript:;">Cancel</a></p>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

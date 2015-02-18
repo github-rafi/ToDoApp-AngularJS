@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="STRIDORDRV15_vehModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'STRIDORDRV15_veh.dbo.ToDoTask' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ToDoTask">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TaskName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Priority" Type="nvarchar" MaxLength="50" />
+    <Property Name="DueDate" Type="date" />
+  </EntityType>
+  <EntityContainer Name="STRIDORDRV15_vehModelStoreContainer">
+    <EntitySet Name="ToDoTask" EntityType="Self.ToDoTask" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ToDoTask].[Id] AS [Id], 
+    [ToDoTask].[TaskName] AS [TaskName], 
+    [ToDoTask].[Priority] AS [Priority], 
+    [ToDoTask].[DueDate] AS [DueDate]
+    FROM [dbo].[ToDoTask] AS [ToDoTask]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
